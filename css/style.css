@@ -1,0 +1,154 @@
+/* ============================================================
+   css/style.css — 하모길 디자인
+   주인: 디자인 담당. 이 파일만 고친다. HTML·JS 는 건드리지 않는다.
+   고칠 때는 아래 [색·크기] 값부터. 그것만 바꿔도 앱 전체가 바뀐다.
+   ============================================================ */
+
+/* ---------- [색·크기] 여기만 바꿔도 된다 ---------- */
+:root {
+  --바탕: #ffffff;
+  --글자: #1a1a1a;
+  --흐린글자: #666;
+  --선: #e2e2e2;
+  --강조: #1565c0;          /* 주 색 */
+  --강조연함: #e8f1fb;
+  --경고: #c62828;
+
+  --확인됨: #2e7d32;
+  --추정:   #ef6c00;
+  --제보됨: #f9a825;
+  --모름:   #757575;
+
+  --기본글자크기: 18px;      /* 고령자용. 16 아래로 내리지 않는다 */
+  --큰글자: 26px;
+  --아주큰글자: 40px;        /* 보여주기 카드 */
+  --단추높이: 56px;          /* 손가락으로 누를 수 있는 최소 크기 */
+  --둥글기: 14px;
+  --사이: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --바탕:#141414; --글자:#f2f2f2; --흐린글자:#aaa; --선:#333; --강조연함:#12283d; }
+}
+
+/* ---------- 뼈대 ---------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--바탕); color: var(--글자);
+  font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", system-ui, -apple-system, sans-serif;
+  font-size: var(--기본글자크기); line-height: 1.55;
+  padding-bottom: 84px;  /* 아래 메뉴 자리 */
+  -webkit-text-size-adjust: 100%;
+}
+
+#머리 {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 12px; background: var(--바탕);
+  border-bottom: 1px solid var(--선);
+}
+#제목 { font-size: 20px; margin: 0; flex: 1; }
+.아이콘단추 {
+  width: 40px; height: 40px; font-size: 22px;
+  border: none; background: none; color: var(--글자); cursor: pointer;
+}
+#언어 { display: flex; gap: 4px; }
+#언어 button {
+  min-width: 40px; height: 36px; border: 1px solid var(--선);
+  background: var(--바탕); color: var(--흐린글자);
+  border-radius: 8px; font-size: 15px; cursor: pointer;
+}
+#언어 button.켜짐 { background: var(--강조); color: #fff; border-color: var(--강조); }
+
+#칸 { padding: var(--사이); max-width: 560px; margin: 0 auto; }
+
+#아래 {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  display: flex; background: var(--바탕); border-top: 1px solid var(--선);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+#아래 button {
+  flex: 1; border: none; background: none; color: var(--흐린글자);
+  padding: 8px 0; font-size: 22px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+#아래 button span { font-size: 12px; }
+
+/* ---------- 공용 부품 (화면 담당자들이 쓰는 class) ---------- */
+
+.카드 {
+  border: 1px solid var(--선); border-radius: var(--둥글기);
+  padding: var(--사이); margin-bottom: var(--사이); background: var(--바탕);
+}
+.카드.고름 { border-color: var(--강조); box-shadow: 0 0 0 2px var(--강조연함); }
+
+.큰단추 {
+  display: block; width: 100%; min-height: var(--단추높이);
+  border: none; border-radius: var(--둥글기);
+  background: var(--강조); color: #fff;
+  font-size: var(--기본글자크기); font-weight: 600; cursor: pointer;
+  margin-top: var(--사이);
+}
+.큰단추.보조 { background: var(--강조연함); color: var(--강조); }
+
+.줄입력 {
+  width: 100%; min-height: var(--단추높이);
+  border: 1px solid var(--선); border-radius: var(--둥글기);
+  padding: 0 14px; font-size: var(--기본글자크기);
+  background: var(--바탕); color: var(--글자);
+}
+textarea.줄입력 { padding: 12px 14px; min-height: 120px; line-height: 1.5; }
+label.이름표 { display: block; margin: 12px 0 6px; font-weight: 600; font-size: 15px; }
+
+/* 고르는 칩 (내 조건, 시간 여유, 정렬) */
+.칩줄 { display: flex; flex-wrap: wrap; gap: 8px; }
+.칩 {
+  min-height: 48px; padding: 0 16px;
+  border: 2px solid var(--선); border-radius: 999px;
+  background: var(--바탕); color: var(--글자);
+  font-size: 16px; cursor: pointer;
+}
+.칩.켜짐 { border-color: var(--강조); background: var(--강조연함); color: var(--강조); font-weight: 600; }
+
+/* 확신도 배지 */
+.배지 {
+  display: inline-block; padding: 3px 10px; margin: 3px 4px 3px 0;
+  border-radius: 999px; font-size: 14px; line-height: 1.5;
+  border: 1px solid currentColor; white-space: nowrap;
+}
+.배지-확인됨 { color: var(--확인됨); }
+.배지-추정   { color: var(--추정); }
+.배지-제보됨 { color: var(--제보됨); }
+.배지-모름   { color: var(--모름); }
+
+/* 막힐 수 있는 곳 경고 배지 */
+.막힘 {
+  display: inline-block; padding: 3px 10px; margin: 3px 4px 3px 0;
+  border-radius: 8px; font-size: 14px;
+  background: #fdecea; color: var(--경고); border: 1px solid #f5c6c2;
+}
+@media (prefers-color-scheme: dark) { .막힘 { background:#3a1d1b; border-color:#5c2c28; color:#ff8a80; } }
+
+.흐림 { color: var(--흐린글자); }
+.작게 { font-size: 14px; color: var(--흐린글자); }
+.크게 { font-size: var(--큰글자); font-weight: 700; }
+
+/* 보여주기 카드 (화면 5) — 전체화면 큰 글씨 */
+.보여주기 {
+  position: fixed; inset: 0; z-index: 50;
+  background: var(--바탕); color: var(--글자);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 24px; gap: 18px;
+}
+.보여주기 .문장 { font-size: var(--아주큰글자); font-weight: 800; line-height: 1.3; }
+.보여주기 .아이콘들 { font-size: 56px; letter-spacing: 8px; }
+
+/* 아직 안 만든 화면 안내 */
+.아직 {
+  border: 2px dashed var(--선); border-radius: var(--둥글기);
+  padding: 28px 18px; text-align: center; color: var(--흐린글자);
+}
+.아직 h2 { font-size: 18px; margin: 0 0 10px; color: var(--글자); }
+.아직 code { background: var(--강조연함); color: var(--강조); padding: 2px 6px; border-radius: 6px; font-size: 14px; }
+.아직.오류 { border-color: var(--경고); }
+.아직 pre { text-align: left; white-space: pre-wrap; font-size: 14px; color: var(--경고); }

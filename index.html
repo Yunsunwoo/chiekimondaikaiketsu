@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>하모길 — 진주 교통약자 길찾기</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header id="머리">
+  <button id="뒤로" class="아이콘단추" aria-label="뒤로">←</button>
+  <h1 id="제목">하모길</h1>
+  <div id="언어">
+    <button data-언어="ko">한</button>
+    <button data-언어="ja">日</button>
+    <button data-언어="en">EN</button>
+  </div>
+</header>
+
+<main id="칸" role="main"><!-- 화면이 여기에 그려진다. 손대지 않는다. --></main>
+
+<nav id="아래">
+  <button data-이동="검색">🔎<span>길찾기</span></button>
+  <button data-이동="조건">🦽<span>내 조건</span></button>
+  <button data-이동="카드">🪧<span>보여주기</span></button>
+  <button data-이동="제보">✉️<span>제보</span></button>
+</nav>
+
+<!-- 순서 중요: app.js 가 먼저, 화면 파일이 나중.
+     화면 파일은 서로를 부르지 않는다. 각자 하모길.화면.○○ 만 채운다. -->
+<script src="js/app.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/search.js"></script>
+<script src="js/result.js"></script>
+<script src="js/detail.js"></script>
+<script src="js/report.js"></script>
+<script>
+  // 파일을 새로 만든 사람은 위에 <script> 한 줄만 추가하면 된다.
+  if (window.하모길) 하모길.그리기();
+</script>
+</body>
+</html>
